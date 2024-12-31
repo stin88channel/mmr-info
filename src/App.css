@@ -1,0 +1,712 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto+Slab:wght@100..900&display=swap');
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "JetBrains Mono", monospace;
+}
+
+img {
+  pointer-events: none;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+body {
+  overflow-x: hidden;
+  padding: 0; /* Убедитесь, что у body нет отступов */
+  background-color: #0d0d0d;
+  color: #fff;
+  height: 100vh; /* Занять всю высоту экрана */
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Центрирование по вертикали */
+  position: relative; /* Для позиционирования стрелки */
+  height: 60em; /* Занять всю высоту экрана */
+  min-height: 100px; /* Минимальная высота для header */
+}
+
+.logo {
+  pointer-events: none;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.navbar_title {
+  font-size: 48px;
+  letter-spacing: .1rem;
+}
+
+.scroll-indicator {
+  position: absolute; /* Позиционируем стрелку */
+  bottom: 40px; /* Отступ от низа экрана */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* Ширина круга */
+  height: 50px; /* Высота круга */
+  border-radius: 50%; /* Делаем круг */
+  border: 3px solid #fff; /* Цвет круга */
+  animation: bounce 1.5s infinite; /* Анимация прыжка */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Высота прыжка */
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* Ограничиваем ширину навигации */
+  font-size: 24px;
+  padding-top: 45px;
+  margin-left: auto; /* Добавляем отступ слева */
+  margin-right: auto; /* Добавляем отступ справа */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  position: relative; /* Для позиционирования псевдоэлемента */
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  position: relative; /* Для позиционирования псевдоэлемента */
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* Расстояние от текста до подчеркивания */
+  width: 100%;
+  height: 2px; /* Высота подчеркивания */
+  background-color: #fff; /* Цвет подчеркивания */
+  transform: scaleX(0); /* Начальное состояние (скрыто) */
+  transition: transform 0.3s ease; /* Плавный переход */
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1); /* При наведении подчеркивание появляется */
+}
+
+.nav-links a:not(:hover)::after {
+  transform: scaleX(0); /* При отсутствии наведения подчеркивание уходит */
+}
+
+.language-toggle {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.language-toggle:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.navbar_logo {
+  max-width: 200px; /* Установите максимальную ширину логотипа */
+  height: auto; /* Высота будет автоматически подстраиваться для сохранения пропорций */
+  transition: all 0.3s ease;
+}
+
+.navbar_logo_link {
+  transition: all 0.3s ease;
+}
+
+.navbar_logo_link:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.container {
+  display: flex;
+  margin-left: 15%;
+  align-items: center; /* Центрируем по вертикали */
+  height: 80vh;
+}
+
+.text-section {
+  flex: 1; /* Занимает доступное пространство */
+  margin-right: 20px; /* Отступ справа от текстового блока */
+}
+
+.title {
+  font-size: 48px; /* Размер заголовка */
+  margin-bottom: 10px; /* Отступ снизу */
+  text-align: left; /* Центрируем текст */
+}
+
+.title span {
+  color: #da4076;
+}
+
+.description {
+  font-size: 18px; /* Размер текста */
+  margin: 20px 0 75px 0;
+  text-align: left; /* Центрируем текст */
+}
+
+.action-button {
+  padding: 15px 50px; /* Отступы внутри кнопки */
+  font-size: 24px; /* Размер текста кнопки */
+  cursor: pointer; /* Указатель при наведении */
+  background-color: #da4076;
+  border-radius: 30px;
+  transition: all .2s;
+}
+
+.action-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.image-section {
+  flex: 1; /* Занимает доступное пространство */
+}
+
+.image {
+  max-width: 100%; /* Ограничиваем ширину изображения */
+  height: auto; /* Высота будет автоматически подстраиваться для сохранения пропорций */
+}
+
+/* Добавь эти классы в App.css */
+.navbar {
+  opacity: 0;
+  transform: translateY(-20px); /* Сдвиг вверх для navbar */
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.navbar.visible {
+  opacity: 1;
+  transform: translateY(0); /* Возвращаем на место */
+}
+
+.container {
+  position: relative; /* Для позиционирования псевдоэлемента */
+  opacity: 0;
+  transform: translateY(20px); /* Сдвиг вниз для container */
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.container.visible {
+  opacity: 1;
+  transform: translateY(0); /* Возвращаем на место */
+}
+
+.line {
+  width: 100px; /* Ширина линии */
+  height: 4px; /* Высота линии */
+  background-color: #da4076; /* Цвет линии */
+  margin: 20px auto; /* Центрируем линию и добавляем отступы */
+}
+
+.three-boxes {
+  display: flex; /* Используем Flexbox для расположения элементов */
+  flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку */
+  justify-content: center; /* Центрируем элементы по горизонтали */
+  margin: 20px; /* Отступы вокруг блока */
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+
+.box {
+  background-color: #242328; /* Цвет фона для каждого блока */
+  border: 1px solid #666; /* Рамка вокруг блока */
+  border-radius: 8px; /* Закругленные углы */
+  padding: 20px; /* Внутренние отступы */
+  width: 30%; /* Ширина каждого блока */
+  margin: 10px; /* Отступы между блоками */
+  text-align: center; /* Центрируем текст */
+  position: relative; /* Для позиционирования изображения */
+  overflow: visible; /* Позволяем содержимому выходить за пределы блока */
+}
+
+.box-image {
+  max-width: 100%; /* Ограничиваем ширину изображения */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  position: relative; /* Для позиционирования изображения */
+  top: -110px; /* Поднимаем изображение вверх */
+  margin: 0 -10px; /* Отрицательные отступы по бокам, чтобы изображение выходило за пределы */
+}
+
+.box-title {
+  font-size: 1.5em; /* Размер шрифта заголовка */
+  margin: 10px 0; /* Отступы сверху и снизу */
+  color: #fff;
+}
+
+.box-description {
+  font-size: 1em; /* Размер шрифта описания */
+  color: #aaaaaa; /* Цвет текста описания */
+}
+
+/* Переносим третий блок на новую строку, сохраняя ширину 30% */
+.three-boxes .box:nth-child(3) {
+  flex: 0 0 30%; /* Устанавливаем ширину 30% для третьего блока */
+}
+
+.how-to-use {
+  display: flex; /* Используем Flexbox для расположения элементов */
+  justify-content: center; /* Центрируем элементы по горизонтали */
+  align-items: center; /* Выравниваем элементы по верхнему краю */
+  height: 100vh; /* Высота блока на всю высоту экрана */
+  margin: 0 100px; /* Отступы вокруг блока */
+  padding: 20px; /* Внутренние отступы для блока */
+  border-radius: 8px; /* Закругленные углы */
+}
+
+.text-left {
+  flex: 1; /* Занимает доступное пространство */
+  margin-right: 20px; /* Отступ справа от текстового блока */
+  color: #fff; /* Цвет текста */
+  text-align: center; /* Центрируем текст внутри блока */
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1;
+  background-position: center;
+}
+
+.text-left h2 {
+  text-align: left;
+  margin-left: 20%;
+}
+
+.text-right {
+  flex: 1; /* Занимает доступное пространство */
+  margin-left: 20px; /* Отступ слева от текстового блока */
+  color: #fff; /* Цвет текста */
+  text-align: center; /* Центрируем текст внутри блока */
+}
+
+.image {
+  width: 500px;
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  border-radius: 8px; /* Закругленные углы для изображения */
+  margin-top: 20px; /* Отступ сверху для изображения */
+}
+
+.list {
+  margin: 20px 15% 0; /* Отступы сверху и снизу для списка */
+  text-align: left; /* Центрируем текст внутри списка */
+  width: 75%;
+}
+
+.list h3 {
+  margin: 10px 0; /* Отступы для заголовков пунктов */
+  color: #da4076; /* Цвет заголовков */
+}
+
+.list p {
+  margin: 0; /* Убираем отступы для описаний */
+  color: #ccc; /* Цвет описаний */
+}
+
+.button-container {
+  display: flex; /* Используем Flexbox для кнопок */
+  gap: 10px; /* Отступы между кнопками */
+  margin-top: 20px; /* Отступ сверху для кнопок */
+  justify-content: center; /* Центрируем кнопки по горизонтали */
+}
+
+.action-button {
+  padding: 24px 40px; /* Отступы внутри кнопки */
+  font-size: 16px; /* Размер текста кнопки */
+  cursor: pointer; /* Указатель при наведении */
+  background-color: #da4076; /* Цвет кнопки */
+  border: none; /* Убираем рамку */
+  border-radius: 5px; /* Закругленные углы */
+  color: #fff; /* Цвет текста кнопки */
+  transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+.action-button:hover {
+  background-color: #fff; /* Цвет кнопки при наведении */
+  color: #000; /* Цвет текста кнопки при наведении */
+}
+
+/* Стили для анимации */
+.block {
+  opacity: 0; /* Начальное состояние (скрыто) */
+  transform: translateY(20px); /* Сдвиг вниз для блока */
+  transition: opacity 0.7s ease, transform 0.7s ease; /* Плавный переход */
+}
+
+.block.visible {
+  opacity: 1; /* Полная видимость */
+  transform: translateY(0); /* Возвращаем на место */
+}
+
+.box {
+  opacity: 0; /* Начальное состояние (скрыто) */
+  transform: translateY(20px); /* Сдвиг вниз для бокса */
+  transition: opacity 0.7s ease, transform 0.7s ease; /* Плавный переход */
+}
+
+.box.visible {
+  opacity: 1; /* Полная видимость */
+  transform: translateY(0); /* Возвращаем на место */
+}
+
+.navbar {
+  opacity: 0; /* Начальное состояние (скрыто) */
+  transform: translateY(-20px); /* Сдвиг вверх для navbar */
+  transition: opacity 0.7s ease, transform 0.7s ease; /* Плавный переход */
+}
+
+.navbar.visible {
+  opacity: 1; /* Полная видимость */
+  transform: translateY(0); /* Возвращаем на место */
+}
+
+.info-block {
+  display: flex; /* Используем Flexbox для расположения элементов */
+  height: calc(100vh - 175px); /* Высота блока на всю высоту экрана минус высота navbar */
+}
+
+.left-section {
+  flex: 1; /* Занимает 50% ширины */
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение элементов */
+  align-items: center; /* Центрируем элементы по горизонтали */
+  justify-content: center; /* Центрируем элементы по вертикали */
+  padding: 20px; /* Отступы внутри блока */
+}
+
+.left-section .action-button {
+  padding: 20px 50px;
+}
+
+.left-title {
+  font-size: 28px; /* Размер заголовка */
+  margin-bottom: 20px; /* Отступ снизу */
+  text-align: center; /* Центрируем текст */
+}
+
+.left-title span {
+  color: #da4076;
+}
+
+.left-image {
+  max-width: 100%; /* Ограничиваем ширину изображения */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  margin-bottom: 20px; /* Отступ снизу от изображения */
+}
+
+.right-section {
+  flex: 1; /* Занимает 50% ширины */
+  padding: 20px; /* Отступы внутри блока */
+  display: flex;
+  flex-direction: column; /* Вертикальное расположение элементов */
+  justify-content: center; /* Центрируем элементы по вертикали */
+}
+
+.right-title {
+  font-size: 26px; /* Размер заголовка */
+  margin-bottom: 30px; /* Отступ снизу */
+}
+
+.right-text {
+  font-size: 16px; /* Размер текста */
+  margin-bottom: 30px; /* Отступ снизу */
+  font-size: 18px;
+  width: 75%;
+}
+
+.right-text span {
+  color: #da4076;
+}
+
+.new-section {
+  margin: 40px 0; /* Отступы сверху и снизу */
+  text-align: center; /* Центрируем текст */
+}
+
+.section-title {
+  font-size: 32px; /* Размер заголовка секции */
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+.items {
+  display: flex; /* Используем Flexbox для расположения элементов */
+  flex-direction: column; /* Вертикальное расположение элементов */
+  align-items: center; /* Центрируем элементы по горизонтали */
+}
+
+.item {
+  display: flex; /* Используем Flexbox для расположения изображения и текста */
+  align-items: center; /* Центрируем по вертикали */
+  justify-content: center;
+  margin: 20px; /* Отступы вокруг каждого элемента */
+  max-width: 600px; /* Максимальная ширина элемента */
+}
+
+.item-image {
+  max-width: 150px; /* Ограничиваем ширину изображения */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  margin-right: 20px; /* Отступ справа от изображения */
+}
+
+.item-content {
+  text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.item-title {
+  font-size: 20px; /* Размер заголовка элемента */
+  color: #da4076;
+  margin: 10px 0; /* Отступы сверху и снизу */
+}
+
+.item-text {
+  font-size: 16px; /* Размер текста элемента */
+  color: #aaa; /* Цвет текста */
+}
+
+.footer {
+  padding: 50px; /* Отступы */
+  text-align: center; /* Центрируем текст */
+}
+
+.footer-content {
+  max-width: 100%; /* Максимальная ширина футера */
+  margin: 0 auto; /* Центрируем футер */
+}
+
+.footer-logo {
+  max-width: 100px; /* Максимальная ширина логотипа */
+  margin-bottom: 10px; /* Отступ снизу от логотипа */
+}
+
+.footer-title {
+  font-size: 32px; /* Размер заголовка */
+  font-weight: 600;
+  letter-spacing: .5rem;
+}
+
+.footer-rights {
+  padding-top: 15px;
+  font-size: 14px; /* Размер текста прав */
+  margin: 5px 0; /* Отступы сверху и снизу */
+}
+
+.footer-description {
+  margin-top: 30px;
+  font-size: 12px; /* Размер описания */
+  color: #aaa; /* Цвет описания */
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+
+  .navbar_logo_link {
+    display: none;
+  }
+
+  .nav-links {
+    gap: 20px;
+    font-size: 22px;
+  }
+
+  .language-toggle {
+    margin-top: 10px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 20px; /* Уменьшаем размер заголовка */
+  }
+
+  .description {
+    font-size: 14px; /* Уменьшаем размер описания */
+  }
+
+  .action-button {
+    font-size: 14px;
+  }
+
+  .three-boxes {
+    flex-direction: column; /* Изменяем направление на колонку */
+    align-items: center; /* Центрируем элементы */
+  }
+
+  .box {
+    width: 100%; /* Занимаем всю ширину */
+    margin-bottom: 80px; /* Отступ между блоками */
+  }
+
+  .how-to-use {
+    margin: 100px 5px 0; /* Отступы вокруг блока */
+    flex-direction: column;
+    margin: 200px 0;
+  }
+
+  .list {
+    margin: 0;
+  }
+
+  .how-to-use .text-left .image {
+    width: 300px;
+  }
+
+  .how-to-use .text-left h2 {
+    font-size: 24px;
+    margin-left: 0;
+  }
+
+  .how-to-use .text-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .info-block {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 400px;
+  }
+
+  .info-block .right-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 350px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .how-to-use .text-left {
+    margin-right: 0;
+  }
+}
+
+/* Стили для планшетов */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .how-to-use .text-left {
+    margin-right: 0;
+  }
+
+  .list {
+    margin: 0;
+  }
+
+  .how-to-use .text-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header {
+    padding: 15px 30px;
+  }
+
+  .title {
+    font-size: 28px; /* Увеличиваем размер заголовка */
+  }
+
+  .description {
+    font-size: 18px; /* Увеличиваем размер описания */
+  }
+
+  .three-boxes {
+    flex-direction: row; /* Возвращаем направление на строку */
+    justify-content: space-between; /* Распределяем элементы */
+  }
+
+  .box {
+    width: 30%; /* Устанавливаем ширину для боксов */
+  }
+  
+  .how-to-use {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 200px 0;
+  }
+  
+  .how-to-use .text-right {
+    margin-top: 30px;
+  }
+
+  .how-to-use .text-left .image {
+    width: 300px;
+  }
+
+  .how-to-use .text-left h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+}
+
+/* Стили для ноутбуков и больших экранов */
+@media (min-width: 1025px) {
+  
+  .header {
+    padding: 20px 40px;
+  }
+
+  .title {
+    font-size: 32px; /* Увеличиваем размер заголовка */
+  }
+
+  .description {
+    font-size: 20px; /* Увеличиваем размер описания */
+  }
+
+  .three-boxes {
+    flex-direction: row; /* Держим направление на строку */
+    justify-content: space-between; /* Распределяем элементы */
+  }
+
+  .box {
+    width: 30%; /* Устанавливаем ширину для боксов */
+  }
+}
